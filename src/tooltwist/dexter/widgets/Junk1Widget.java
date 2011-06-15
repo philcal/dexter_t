@@ -36,7 +36,8 @@ public class Junk1Widget extends WbdWidgetController
 		instance.defineProperty(new WbdStringProperty("elementId", null, "Id", ""));
 //		instance.defineProperty(new WbdStringProperty("myProperty", null, "My Property", ""));
 //		instance.defineProperty(new WbdNavPointProperty("navpoint", null, "Navpoint", ""));
-		
+
+// here is a comment
 	}
 	
 	@Override
