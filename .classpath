@@ -12,5 +12,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/3rdPartyJars"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/tooltwist"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ttStd"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ttWbd"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
