@@ -1,0 +1,6 @@
+<widget>
+  <widgetClass>tooltwist.dexter.widgets.Junk1Widget</widgetClass>
+  <idWithinRootWidget>0</idWithinRootWidget>
+  <label>Junk1</label>
+  <description>Junk1</description>
+</widget>

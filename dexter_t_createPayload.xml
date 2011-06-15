@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+<!-- ======================================================================
+
+     Upload a package for project 'dexter_t' into the ToolTwist Controller
+
+     ====================================================================== -->
+<project name="createPayload" default="default">
+	<property name="CONTROLLER_HOME" value="/Controller"></property>
+	<property name="PAYLOAD_NAME" value="dexter_t"></property>
+	<property name="payload.dir" value="/tmp/${PAYLOAD_NAME}-payload"></property>
+	<property name="zipfile" value="/tmp/${PAYLOAD_NAME}-payload.zip"></property>
+
+    <description>
+            Create a payload file for the technology layer
+    </description>
+
+    <!-- - - - - - - - - - - - - - - - - -
+          target: depends                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="default" depends="clean,WebContent,src,config,zip,upload">
+	</target>
+
+	<target name="clean">
+		<delete dir="${payload.dir}"/>
+	</target>
+
+    <target name="WebContent">
+    	<copy todir="${payload.dir}/WebContent">
+    		<fileset dir="WebContent" id="id">
+			    <exclude name="**/WEB-INF/web.xml"/>
+			</fileset>
+    	</copy>
+    </target>
+    <target name="src">
+    	<copy todir="${payload.dir}/src">
+    		<fileset dir="src" id="id">
+    			<!--
+			    <include name="WebContent/*"/>
+			    <exclude name="exclude"/>
+			    -->
+			</fileset>
+    	</copy>
+    </target>
+    <target name="config">
+    	<copy todir="${payload.dir}/config">
+    		<fileset dir="config" id="id">
+    			<!--
+			    <exclude name="wbd/**"/>
+			    <exclude name="libraries/**"/>
+			    <exclude name="navpoints/**"/>
+			    <exclude name="pagedata/**"/>
+			    <exclude name="bin/setParams"/>
+			    -->
+			</fileset>
+    	</copy>
+    </target>
+
+	<target name="zip">
+		<zip destfile="${zipfile}" basedir="${payload.dir}"/>
+		<echo message="Payload file created: ${zipfile}"></echo>
+	</target>
+
+	<target name="upload">
+        <echo message="Upload the payload"/>
+        <exec executable="/bin/sh" dir="../ttWbd/bin" spawn="false">
+            <arg value="-c"/>
+            <arg value="chmod +x addTechnicalPayload.sh; ./addTechnicalPayload.sh '${PAYLOAD_NAME}' 'controller' '${zipfile}'"/>
+        </exec>
+	</target>
+
+</project>
